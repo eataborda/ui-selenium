@@ -57,7 +57,7 @@ public class WebDriverConfig {
                     break;
             }
         } else {
-            //Throw an exception not supported browser
+            //Throw an exception not supported browser updated
         }
     }
 
