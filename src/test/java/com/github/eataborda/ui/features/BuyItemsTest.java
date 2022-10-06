@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 @Narrative(text={"In order to choose the best flight for my travels",
         "As a traveller",
-        "I want to be able to search for flights between specific destinationsss"})
+        "I want to be able to search for flights between specific destinationssss"})
 @RunWith(SerenityRunner.class)
 @WithTagValuesOf({"smoke", "regression", "workflow"})
 public class BuyItemsTest {
