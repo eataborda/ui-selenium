@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
       - name: Build with Gradle
         run: ./gradlew -Dtags="smoke" -DtakeScreenshots="selenium" -Dbrowser="chrome"
       - name: Automation ui test result

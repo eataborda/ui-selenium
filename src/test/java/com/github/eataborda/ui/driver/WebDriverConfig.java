@@ -4,6 +4,7 @@ import com.github.eataborda.ui.enums.URLs;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -24,7 +25,9 @@ public class WebDriverConfig {
         if (supportedBrowsers.contains(browser)) {
             switch (browser) {
                 case "chrome":
-                    driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless");
+                    driver = new ChromeDriver(options);
                     break;
                 case "firefox":
                     driver = new FirefoxDriver();
