@@ -62,7 +62,7 @@ public class BasePage {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String currentDate = String.valueOf(System.currentTimeMillis());
         String fileExtension = ".png";
-        String filePath = Paths.get("").toAbsolutePath().toString().concat("/evidence");
+        String filePath = Paths.get("").toAbsolutePath().toString().concat("/target/site/evidence");
         String fileName = "\\evidence_".concat(currentDate).concat(fileExtension);
         try {
             FileUtils.copyFile(scrFile, new File(filePath + fileName));
