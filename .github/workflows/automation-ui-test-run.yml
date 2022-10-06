@@ -1,0 +1,19 @@
+name: automation-ui-test-run
+on:
+  push:
+    paths:
+      - 'src/test/**'
+  schedule:
+    - cron: '0 9 * * 1,4'
+jobs:
+  test-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./gradlew -Dtags="smoke" -DtakeScreenshots="selenium" -Dbrowser="chrome"
+      - name: 'Automation ui test result'
+        uses: actions/upload-artifact@v2
+        with:
+          name: automation-ui-test-result
+          path: target/site
+          retention-days: 3

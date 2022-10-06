@@ -42,7 +42,6 @@ public class BasePage {
                 break;
             case "serenity":
                 Serenity.takeScreenshot();
-
                 break;
             default:
                 break;
