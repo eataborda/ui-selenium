@@ -35,8 +35,6 @@ tasks.withType<Test> {
     systemProperty("takeScreenshots", System.getProperty("takeScreenshots"))
 }
 
-
-
 dependencies {
     testImplementation("net.serenity-bdd:serenity-core:3.2.5")
     testImplementation("net.serenity-bdd:serenity-junit:3.2.5")
