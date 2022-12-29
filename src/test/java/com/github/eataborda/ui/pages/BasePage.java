@@ -1,6 +1,7 @@
 package com.github.eataborda.ui.pages;
 
 import net.serenitybdd.core.Serenity;
+import net.serenitybdd.core.pages.PageComponent;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,9 +17,9 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-public class BasePage {
+public class BasePage extends PageComponent {
     private final WebDriver driver;
-    private final String takeScreenshots = getParameterValue("takeScreenshots");
+    private final String screenshots = getParameterValue("screenshots");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -33,7 +34,7 @@ public class BasePage {
     }
 
     public void takeScreenshot() {
-        switch (takeScreenshots) {
+        switch (screenshots) {
             case "no":
                 // Do nothing
                 break;
