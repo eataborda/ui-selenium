@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Gradle
-        run: ./gradlew -Dtags="regression" -Dscreenshots="serenity" -Dwebdriver.driver="chrome"
+        run: ./gradlew -Dtags="regression" -Dscreenshots="serenity" -Dwebdriver.driver="chrome" -Dchrome.switches="--window-size=1920,1080;--headless;"
       - name: Automation ui test result
         uses: actions/upload-artifact@v2
         with:

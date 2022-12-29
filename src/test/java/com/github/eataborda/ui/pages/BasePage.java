@@ -78,5 +78,4 @@ public class BasePage extends PageComponent {
     private String getParameterValue(String key) {
         return System.getProperty(key);
     }
-
 }
