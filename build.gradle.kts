@@ -31,7 +31,6 @@ tasks.test {
 
 tasks.withType<Test> {
     systemProperty("tags", System.getProperty("tags"))
-    systemProperty("browser", System.getProperty("browser"))
     systemProperty("screenshots", System.getProperty("screenshots"))
     systemProperty("webdriver.driver", System.getProperty("webdriver.driver"))
 }
