@@ -33,6 +33,7 @@ tasks.withType<Test> {
     systemProperty("tags", System.getProperty("tags"))
     systemProperty("screenshots", System.getProperty("screenshots"))
     systemProperty("webdriver.driver", System.getProperty("webdriver.driver"))
+    systemProperty("chrome.switches", System.getProperty("chrome.switches"))
 }
 
 dependencies {
