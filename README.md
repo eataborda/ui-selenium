@@ -1,6 +1,6 @@
 [![automation-ui-test-run](https://github.com/eataborda/selenium-serenity-gradle-java-junit/actions/workflows/automation-ui-test-run.yml/badge.svg)](https://github.com/eataborda/selenium-serenity-gradle-java-junit/actions/workflows/automation-ui-test-run.yml)
-[![Gradle](https://img.shields.io/badge/Gradle-7.4.2-blue)](https://gradle.org/releases/)
-[![Gradle Plugin Portal](https://img.shields.io/badge/serenity.gradle.plugin-3.4.2-blue)](https://plugins.gradle.org/plugin/net.serenity-bdd.serenity-gradle-plugin/3.4.2)
+[![Gradle](https://img.shields.io/badge/Gradle-8.3-blue)](https://gradle.org/releases/)
+[![Gradle Plugin Portal](https://img.shields.io/badge/serenity.gradle.plugin-3.9.8-blue)](https://plugins.gradle.org/plugin/net.serenity-bdd.serenity-gradle-plugin/3.9.8)
 
 # Basic UI automation 
 A basic UI automation using Java + Junit + Selenium + Serenity + Gradle. Automation
@@ -16,8 +16,8 @@ Contains:
 - Verify that you have `Java` installed, also that you already setup the following environment variables: `$PATH` and `$JAVA_HOME`
 - Clone the repository and move inside that path:
 ```shellscript
-$ git clone git@github.com:eataborda/selenium-serenity-gradle-java-junit.git
-$ cd ./selenium-serenity-gradle-java-junit
+$ git clone git@github.com:eataborda/ui-serenity.git
+$ cd ./ui-serenity
 ```
 
 ### Run tests

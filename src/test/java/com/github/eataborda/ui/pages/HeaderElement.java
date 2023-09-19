@@ -39,34 +39,23 @@ public class HeaderElement extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public void clickBurgerMenu() {
-        burgerMenuButton.click();
+    public void selectAllItemsOption() {
+        click(burgerMenuButton);
+        click(allItemsLink);
     }
 
-    public InventoryPage selectAllItemsOption() {
-        clickBurgerMenu();
-        allItemsLink.click();
-        return new InventoryPage(driver);
+    public void selectLogOutOption() {
+        click(burgerMenuButton);
+        click(logoutLink);
     }
 
-    public LoginPage selectLogOutOption() {
-        takeScreenshot();
-        clickBurgerMenu();
-        waitForElement(logoutLink);
-        takeScreenshot();
-        logoutLink.click();
-        return new LoginPage(driver);
+    public void selectResetAppStateOption() {
+        click(burgerMenuButton);
+        click(resetAppStateLink);
     }
 
-    public LoginPage selectResetAppStateOption() {
-        clickBurgerMenu();
-        resetAppStateLink.click();
-        return new LoginPage(driver);
-    }
-
-    public CartPage submitShoppingCart() {
-        shoppingCartLink.click();
-        return new CartPage(driver);
+    public void submitShoppingCart() {
+        click(shoppingCartLink);
     }
 
 }

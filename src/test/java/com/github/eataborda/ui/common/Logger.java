@@ -1,6 +1,6 @@
 package com.github.eataborda.ui.common;
 
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 
 public class Logger {
     @Step("{0}")

@@ -1,6 +1,5 @@
 package com.github.eataborda.ui.pages;
 
-import com.github.eataborda.ui.enums.URLs;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +14,6 @@ public class CheckOutStepTwoPage extends BasePage {
     public CheckOutStepTwoPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        if (!driver.getCurrentUrl().equals(URLs.CHECKOUT_STEP_TWO.getValue())) {
-            throw new IllegalStateException("Incorrect Cart page of logged in user," +
-                    " current page is: " + driver.getCurrentUrl());
-        }
         PageFactory.initElements(this.driver, this);
     }
 
@@ -26,12 +21,8 @@ public class CheckOutStepTwoPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public CheckOutCompletePage submitFinish() {
-        takeScreenshot();
+    public void submitFinish() {
         scrollPageEnd();
-        waitForElement(finishButton);
-        takeScreenshot();
-        finishButton.click();
-        return new CheckOutCompletePage(driver);
+        click(finishButton);
     }
 }

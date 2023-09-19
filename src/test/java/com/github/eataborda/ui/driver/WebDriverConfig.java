@@ -7,7 +7,6 @@ import java.time.Duration;
 public class WebDriverConfig {
 
     public static void setupTest(WebDriver driver) {
-            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(250));
             driver.get(URLs.LOGIN.getValue());
             driver.manage().window().maximize();
     }

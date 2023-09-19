@@ -1,6 +1,5 @@
 package com.github.eataborda.ui.pages;
 
-import com.github.eataborda.ui.enums.URLs;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -33,39 +32,17 @@ public class CheckOutStepOnePage extends BasePage {
     public CheckOutStepOnePage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        if (!driver.getCurrentUrl().equals(URLs.CHECKOUT_STEP_ONE.getValue())) {
-            throw new IllegalStateException("Incorrect Cart page of logged in user," +
-                    " current page is: " + driver.getCurrentUrl());
-        }
-        PageFactory.initElements(this.driver,this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    public void typeFirstName() {
-        firstNameTextBox.sendKeys("Alexander");
-    }
-
-    public void typeLastName() {
-        lastNameTextBox.sendKeys("Kepler");
-    }
-
-    public void typePostalCode() {
-        postalCodeTextBox.sendKeys("Kepler");
-    }
-
-    public CheckOutStepTwoPage submitContinue() {
-        continueButton.click();
-        return new CheckOutStepTwoPage(driver);
-    }
-
-    public CheckOutStepTwoPage fillInFormAndContinue() {
-        typeFirstName();
-        typeLastName();
-        typePostalCode();
-        takeScreenshot();
-        return submitContinue();
+    public void fillInFormAndContinue() {
+        sendKeys(firstNameTextBox, "Alexander");
+        sendKeys(lastNameTextBox, "Kepler");
+        sendKeys(postalCodeTextBox, "1234");
+        click(continueButton);
     }
 }

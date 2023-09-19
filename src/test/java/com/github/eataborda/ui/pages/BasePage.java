@@ -1,23 +1,18 @@
 package com.github.eataborda.ui.pages;
 
-import net.serenitybdd.core.Serenity;
-import net.serenitybdd.core.pages.PageComponent;
+import net.serenitybdd.core.pages.PageObject;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-public class BasePage extends PageComponent {
+public class BasePage extends PageObject {
     private final WebDriver driver;
     private final String screenshots = getParameterValue("screenshots");
 
@@ -25,28 +20,22 @@ public class BasePage extends PageComponent {
         this.driver = driver;
     }
 
-    public void waitForElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(300));
-        wait.until(ExpectedConditions.and(
-                ExpectedConditions.visibilityOf(element),
-                ExpectedConditions.elementToBeClickable(element)
-        ));
+    public FluentWait<WebDriver> getFluentWait() {
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
+        fluentWait.withTimeout(Duration.ofSeconds(5));
+        fluentWait.pollingEvery(Duration.ofMillis(250));
+        fluentWait.ignoring(NoSuchElementException.class);
+        return fluentWait;
     }
 
-    public void takeScreenshot() {
-        switch (screenshots) {
-            case "no":
-                // Do nothing
-                break;
-            case "selenium":
-                takeSeleniumScreenshot();
-                break;
-            case "serenity":
-                Serenity.takeScreenshot();
-                break;
-            default:
-                break;
-        }
+    public void sendKeys(WebElement webElement, String text) {
+        getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
+        webElement.sendKeys(text);
+    }
+
+    public void click(WebElement webElement) {
+        getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        webElement.click();
     }
 
     public void scrollPageDown() {
@@ -75,6 +64,7 @@ public class BasePage extends PageComponent {
     private String getEnvironmentVariable(String key) {
         return System.getenv(key);
     }
+
     private String getParameterValue(String key) {
         return System.getProperty(key);
     }

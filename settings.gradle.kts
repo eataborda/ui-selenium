@@ -1,2 +1,2 @@
-rootProject.name = "selenium-serenity-gradle-java-junit"
+rootProject.name = "ui-serenity"
 
