@@ -1,5 +1,6 @@
 package com.github.eataborda.ui.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,10 +14,7 @@ public class HeaderElement extends BasePage {
     @CacheLookup
     WebElement burgerMenuButton;
 
-    @FindBy(id = "shopping_cart_container")
-    @CacheLookup
-    WebElement shoppingCartLink;
-
+    private final By shoppingCartContainer = By.id("shopping_cart_container");
     @FindBy(id = "inventory_sidebar_link")
     @CacheLookup
     WebElement allItemsLink;
@@ -55,7 +53,7 @@ public class HeaderElement extends BasePage {
     }
 
     public void submitShoppingCart() {
-        click(shoppingCartLink);
+        click(driver.findElement(shoppingCartContainer));
     }
 
 }

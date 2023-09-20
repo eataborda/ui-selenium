@@ -1,23 +1,20 @@
-[![automation-ui-test-run](https://github.com/eataborda/selenium-serenity-gradle-java-junit/actions/workflows/automation-ui-test-run.yml/badge.svg)](https://github.com/eataborda/selenium-serenity-gradle-java-junit/actions/workflows/automation-ui-test-run.yml)
+[![automation-ui-test-run](https://github.com/eataborda/ui-selenium/actions/workflows/automation-ui-test-run.yml/badge.svg)](https://github.com/eataborda/ui-selenium/actions/workflows/automation-ui-test-run.yml)
 [![Gradle](https://img.shields.io/badge/Gradle-8.3-blue)](https://gradle.org/releases/)
-[![Gradle Plugin Portal](https://img.shields.io/badge/serenity.gradle.plugin-3.9.8-blue)](https://plugins.gradle.org/plugin/net.serenity-bdd.serenity-gradle-plugin/3.9.8)
-
 # Basic UI automation 
-A basic UI automation using Java + Junit + Selenium + Serenity + Gradle. Automation
+A basic UI automation using Java + Junit + Selenium + Gradle. Automation
 created to test the [Sauce Demo](https://www.saucedemo.com/) page
 
 Contains:
-- Basic build.gradle.kts config to execute Junit tests with Serenity
+- Basic build.gradle.kts config to execute Junit tests with Selenium
 - UI automation using the POM pattern
-- Config to generate a Serenity test report with screenshots
 
 ## Use sample project locally
 - Verify that you have `Git`
 - Verify that you have `Java` installed, also that you already setup the following environment variables: `$PATH` and `$JAVA_HOME`
 - Clone the repository and move inside that path:
 ```shellscript
-$ git clone git@github.com:eataborda/ui-serenity.git
-$ cd ./ui-serenity
+$ git clone git@github.com:eataborda/ui-selenium.git
+$ cd ./ui-selenium
 ```
 
 ### Run tests
