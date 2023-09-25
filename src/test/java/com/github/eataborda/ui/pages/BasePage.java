@@ -28,6 +28,14 @@ public class BasePage {
         return fluentWait;
     }
 
+    public FluentWait<WebDriver> getLongFluentWait() {
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
+        fluentWait.withTimeout(Duration.ofSeconds(10));
+        fluentWait.pollingEvery(Duration.ofMillis(350));
+        fluentWait.ignoring(NoSuchElementException.class);
+        return fluentWait;
+    }
+
     public void sendKeys(WebElement webElement, String text) {
         getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
@@ -35,6 +43,11 @@ public class BasePage {
 
     public void click(WebElement webElement) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        webElement.click();
+    }
+
+    public void longWaitAndClick(WebElement webElement){
+        getLongFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 

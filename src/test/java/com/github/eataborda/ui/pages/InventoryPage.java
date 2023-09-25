@@ -65,6 +65,11 @@ public class InventoryPage extends BasePage {
         return itemNameList;
     }
 
+    public Integer getNumberOfRepeatedImageSrc(String src){
+        String inventoryItemImageXpath = "//img[@src='".concat(src).concat("']");
+        return driver.findElements(By.xpath(inventoryItemImageXpath)).size();
+    }
+
     public void goToCart() {
         headerElement.submitShoppingCart();
     }

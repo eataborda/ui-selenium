@@ -1,5 +1,6 @@
 package com.github.eataborda.ui.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
     private final WebDriver driver;
+
+    private final By fieldErrorMessage = By.xpath("//h3[@data-test='error']");
 
     @FindBy(id = "user-name")
     WebElement userNameTextBox;
@@ -31,5 +34,8 @@ public class LoginPage extends BasePage {
         sendKeys(userNameTextBox,userName);
         sendKeys(passwordTextBox,password);
         click(loginButton);
+    }
+    public String getFieldErrorMessage() {
+        return driver.findElement(fieldErrorMessage).getText();
     }
 }

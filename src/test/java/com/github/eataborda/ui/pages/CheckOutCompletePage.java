@@ -22,6 +22,6 @@ public class CheckOutCompletePage extends BasePage {
     }
 
     public void submitBackHome() {
-        click(backHomeButton);
+        longWaitAndClick(backHomeButton);
     }
 }

@@ -23,6 +23,6 @@ public class CheckOutStepTwoPage extends BasePage {
 
     public void submitFinish() {
         scrollPageEnd();
-        click(finishButton);
+        longWaitAndClick(finishButton);
     }
 }
