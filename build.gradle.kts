@@ -38,6 +38,8 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:4.12.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
-    testImplementation("org.slf4j:slf4j-simple:2.0.5")
+    testImplementation("ch.qos.logback:logback-classic:1.4.11")
+    testImplementation("ch.qos.logback:logback-core:1.4.11")
+    testImplementation("org.slf4j:slf4j-simple:2.0.9")
     testImplementation("commons-io:commons-io:2.13.0")
 }

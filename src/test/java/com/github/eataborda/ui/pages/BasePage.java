@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.time.Duration;
 
 public class BasePage {
     private final WebDriver driver;
+
+    private final Logger logger = LoggerFactory.getLogger(BasePage.class);
     private final String screenshots = getParameterValue("screenshots");
 
     public BasePage(WebDriver driver) {
@@ -39,21 +43,19 @@ public class BasePage {
     public void sendKeys(WebElement webElement, String text) {
         getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
+        logger.info("Send '" + text + "' to "+webElement.getAttribute("id"));
     }
 
     public void click(WebElement webElement) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
-        webElement.click();
-    }
-
-    public void longWaitAndClick(WebElement webElement){
-        getLongFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        logger.info("Click on "+webElement.getAttribute("id"));
         webElement.click();
     }
 
     public void selectByValue(WebElement webElement, String value) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
         Select select = new Select(webElement);
+        logger.info("Select '"+value+"' from "+webElement.getAttribute("class"));
         select.selectByValue(value);
     }
 

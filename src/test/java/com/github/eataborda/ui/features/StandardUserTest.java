@@ -6,6 +6,8 @@ import com.github.eataborda.ui.pages.*;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class StandardUserTest {
         assertEquals(URLs.LOGIN.getValue(), loginPage.getCurrentUrl(), "Page doesn't have the expected URL");
     }
 
-    /*@Test
+    @Test
     @Tag("remove-cart-items")
     @DisplayName("Remove cart items test")
     public void removeCartItemsTest() {
@@ -153,5 +155,5 @@ public class StandardUserTest {
                 .as("Compare postal code error message").isEqualTo("Error: Postal Code is required");
 
         softAssertions.assertAll();
-    }*/
+    }
 }

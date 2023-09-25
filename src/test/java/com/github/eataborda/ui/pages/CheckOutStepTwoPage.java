@@ -1,5 +1,6 @@
 package com.github.eataborda.ui.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,6 @@ public class CheckOutStepTwoPage extends BasePage {
 
     public void submitFinish() {
         scrollPageEnd();
-        longWaitAndClick(finishButton);
+        click(driver.findElement(By.id("finish")));
     }
 }

@@ -26,7 +26,7 @@ public class LockedOutUserTest {
         }
     }
 
-    /*@Test
+    @Test
     @Tag("login-locked-user")
     @DisplayName("Login locked out user test")
     public void lockedOutUserTest() {
@@ -40,5 +40,5 @@ public class LockedOutUserTest {
     public void wrongPasswordTest() {
         loginPage.loginValidUser("standard_user", "wrong_sauce");
         assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getFieldErrorMessage(),"Message doesn't have the expected value");
-    }*/
+    }
 }

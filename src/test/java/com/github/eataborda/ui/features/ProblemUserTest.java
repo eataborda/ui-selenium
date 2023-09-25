@@ -39,7 +39,7 @@ public class ProblemUserTest {
         }
     }
 
-    /*@Test
+    @Test
     @Tag("inventory-item-src-issues")
     @DisplayName("Inventory items with issues test")
     public void inventoryItemsWithIssuesTest() {
@@ -82,6 +82,6 @@ public class ProblemUserTest {
                 .as("Compare A to Z item list with initial item list").isEqualTo(initialNameList);
 
         softAssertions.assertAll();
-    }*/
+    }
 
 }
