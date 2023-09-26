@@ -21,7 +21,29 @@ tasks.clean {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    val includedTags = System . getProperty ("includeTags")
+    val includedTagsSet = (includedTags!=null)
+
+    val excludedTags = System . getProperty ("excludeTags")
+    val excludeTagsSet = (excludedTags!=null)
+
+    if(includedTagsSet && excludeTagsSet){
+        useJUnitPlatform{
+            includeTags (includedTags)
+            excludeTags (excludedTags)
+        }
+    } else if (includedTagsSet && !excludeTagsSet){
+        useJUnitPlatform{
+            includeTags (includedTags)
+        }
+    } else if (!includedTagsSet && excludeTagsSet){
+        useJUnitPlatform{
+            excludeTags(excludedTags)
+        }
+    } else{
+        useJUnitPlatform()
+    }
+
     testLogging.showStandardStreams = true
     ignoreFailures = true
     dependsOn(tasks.clean)
@@ -31,6 +53,8 @@ tasks.withType<Test> {
     systemProperty("tags", System.getProperty("tags"))
     systemProperty("screenshots", System.getProperty("screenshots"))
     systemProperty("driver", System.getProperty("driver"))
+    systemProperty("includeTags", System.getProperty("includeTags"))
+    systemProperty("excludeTags", System.getProperty("excludeTags"))
     systemProperty("chrome.switches", System.getProperty("chrome.switches"))
 }
 

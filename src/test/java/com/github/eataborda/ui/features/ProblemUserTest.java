@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-@Tags(value = {@Tag("smoke"), @Tag("regression"), @Tag("workflow")})
+@Tags(value = {@Tag("problem-user"), @Tag("regression")})
 public class ProblemUserTest {
     public WebDriver driver;
     private LoginPage loginPage;

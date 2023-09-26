@@ -6,14 +6,12 @@ import com.github.eataborda.ui.pages.*;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tags(value = {@Tag("smoke"), @Tag("regression"), @Tag("workflow")})
+@Tags(value = {@Tag("standard-user"), @Tag("smoke"), @Tag("regression")})
 public class StandardUserTest {
     public WebDriver driver;
 

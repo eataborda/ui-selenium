@@ -1,2 +1,2 @@
-rootProject.name = "ui-serenity"
+rootProject.name = "ui-selenium"
 

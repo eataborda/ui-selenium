@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Tags(value = {@Tag("smoke"), @Tag("regression"), @Tag("workflow")})
+@Tags(value = {@Tag("locked-out-user"), @Tag("regression")})
 public class LockedOutUserTest {
     public WebDriver driver;
     private LoginPage loginPage;
