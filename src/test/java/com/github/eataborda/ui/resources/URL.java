@@ -1,6 +1,6 @@
-package com.github.eataborda.ui.enums;
+package com.github.eataborda.ui.resources;
 
-public enum URLs {
+public enum URL {
     LOGIN("https://www.saucedemo.com/"),
     INVENTORY("https://www.saucedemo.com/inventory.html"),
     CART("https://www.saucedemo.com/cart.html"),
@@ -10,7 +10,7 @@ public enum URLs {
 
     private final String value;
 
-    URLs(String value) {
+    URL(String value) {
         this.value = value;
     }
 

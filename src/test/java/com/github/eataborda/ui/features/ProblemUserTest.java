@@ -5,6 +5,7 @@ import com.github.eataborda.ui.pages.CartPage;
 import com.github.eataborda.ui.pages.CheckOutStepOnePage;
 import com.github.eataborda.ui.pages.InventoryPage;
 import com.github.eataborda.ui.pages.LoginPage;
+import com.github.eataborda.ui.resources.AnnotationValues;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-@Tags(value = {@Tag("problem-user"), @Tag("regression")})
+@Tags(value = {@Tag(AnnotationValues.PROBLEM_USER_TAG), @Tag(AnnotationValues.REGRESSION_TAG)})
 public class ProblemUserTest {
     public WebDriver driver;
     private LoginPage loginPage;
@@ -40,8 +41,8 @@ public class ProblemUserTest {
     }
 
     @Test
-    @Tag("inventory-item-src-issues")
-    @DisplayName("Inventory items with issues test")
+    @Tag(AnnotationValues.INVENTORY_ITEM_SRC_ISSUES_TAG)
+    @DisplayName(AnnotationValues.INVENTORY_ITEM_SRC_ISSUES_DISPLAY_NAME)
     public void inventoryItemsWithIssuesTest() {
         loginPage.loginValidUser("problem_user", "secret_sauce");
         assertNotEquals(0, inventoryPage.getNumberOfRepeatedImageSrc("/static/media/sl-404.168b1cce.jpg"), "Inventory items have the correct image src");
@@ -49,8 +50,8 @@ public class ProblemUserTest {
     }
 
     @Test
-    @Tag("inventory-filter-issues")
-    @DisplayName("Inventory filter issues test")
+    @Tag(AnnotationValues.INVENTORY_FILTER_ISSUES_TAG)
+    @DisplayName(AnnotationValues.INVENTORY_FILTER_ISSUES_DISPLAY_NAME)
     public void inventoryFilterIssuesTest() {
         loginPage.loginValidUser("problem_user", "secret_sauce");
         // initial list of items
@@ -58,25 +59,25 @@ public class ProblemUserTest {
         SoftAssertions softAssertions = new SoftAssertions();
 
         // inventory order name z to a
-        inventoryPage.orderItemsByCriteria("za");
+        inventoryPage.sortItemsByValue("za");
         List<String> zToANameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(zToANameList)
                 .as("Compare Z to A item list with initial item list").isEqualTo(initialNameList);
 
         // order price low to high and verify
-        inventoryPage.orderItemsByCriteria("lohi");
+        inventoryPage.sortItemsByValue("lohi");
         List<String> loHiNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(loHiNameList)
                 .as("Compare Low to High item list with initial item list").isEqualTo(initialNameList);
 
         // order name high to low and verify
-        inventoryPage.orderItemsByCriteria("hilo");
+        inventoryPage.sortItemsByValue("hilo");
         List<String> hiLoNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(hiLoNameList)
                 .as("Compare High to Low item list with initial item list").isEqualTo(initialNameList);
 
         // inventory order name a to z and verify
-        inventoryPage.orderItemsByCriteria("az");
+        inventoryPage.sortItemsByValue("az");
         List<String> atoZNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(atoZNameList)
                 .as("Compare A to Z item list with initial item list").isEqualTo(initialNameList);

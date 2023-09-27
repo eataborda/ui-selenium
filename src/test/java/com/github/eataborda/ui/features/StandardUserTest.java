@@ -1,7 +1,7 @@
 package com.github.eataborda.ui.features;
 
 import com.github.eataborda.ui.driver.WebDriverConfig;
-import com.github.eataborda.ui.enums.URLs;
+import com.github.eataborda.ui.resources.*;
 import com.github.eataborda.ui.pages.*;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
@@ -11,7 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tags(value = {@Tag("standard-user"), @Tag("smoke"), @Tag("regression")})
+@Tags(value = {@Tag(AnnotationValues.STANDARD_USER_TAG),
+        @Tag(AnnotationValues.SMOKE_TAG), @Tag(AnnotationValues.REGRESSION_TAG)})
 public class StandardUserTest {
     public WebDriver driver;
 
@@ -42,95 +43,96 @@ public class StandardUserTest {
     }
 
     @Test
-    @Tag("buy-items")
-    @DisplayName("Buy items test")
+    @Tag(AnnotationValues.BUY_ITEMS_TAG)
+    @DisplayName(AnnotationValues.BUY_ITEMS_DISPLAY_NAME)
     public void buyItemsTest() {
-        loginPage.loginValidUser("standard_user", "secret_sauce");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
         inventoryPage.addItemsAndGoToCart();
         cartPage.checkout();
-        checkOutStepOnePage.fillInFormAndContinueShopping("Alexander", "Kepler", "1234");
+        checkOutStepOnePage.fillInFormAndContinueShopping(Client.EXAMPLE_CLIENT.getFirstName(),
+                Client.EXAMPLE_CLIENT.getLastName(), Client.EXAMPLE_CLIENT.getPostalCode());
         checkOutStepTwoPage.submitFinish();
         checkOutCompletePage.submitBackHome();
         inventoryPage.logout();
-        assertEquals(URLs.LOGIN.getValue(), loginPage.getCurrentUrl(), "Page doesn't have the expected URL");
+        assertEquals(URL.LOGIN.getValue(), loginPage.getCurrentUrl(), ErrorMessage.NOT_EXPECTED_URL.getMessage());
     }
 
     @Test
-    @Tag("remove-cart-items")
-    @DisplayName("Remove cart items test")
+    @Tag(AnnotationValues.REMOVE_CART_ITEMS_TAG)
+    @DisplayName(AnnotationValues.REMOVE_CART_DISPLAY_NAME)
     public void removeCartItemsTest() {
-        loginPage.loginValidUser("standard_user", "secret_sauce");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
         inventoryPage.addItemsAndGoToCart();
         cartPage.removeAllItems();
         cartPage.continueShopping();
         inventoryPage.goToCart();
-        assertEquals(0, cartPage.getNumberOfItems(), "Items were not complete removed form cart");
+        assertEquals(0, cartPage.getNumberOfItems(), ErrorMessage.ITEMS_NOT_COMPLETELY_REMOVED.getMessage());
     }
 
     @Test
-    @Tag("cart-items-persistence")
-    @DisplayName("Cart items persistence test")
+    @Tag(AnnotationValues.CART_ITEMS_PERSISTENCE_TAG)
+    @DisplayName(AnnotationValues.CART_ITEMS_PERSISTENCE_DISPLAY_NAME)
     public void cartItemsPersistenceTest() {
-        loginPage.loginValidUser("standard_user", "secret_sauce");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
         inventoryPage.addItemsAndGoToCart();
         cartPage.continueShopping();
         inventoryPage.goToCart();
-        assertEquals(3, cartPage.getNumberOfItems(), "Items were not persisted correctly in cart");
+        assertEquals(3, cartPage.getNumberOfItems(), ErrorMessage.ITEMS_INCORRECTLY_PERSISTED_IN_CART.getMessage());
     }
 
     @Test
-    @Tag("order-inventory-items")
-    @DisplayName("Order inventory items test")
+    @Tag(AnnotationValues.ORDER_INVENTORY_ITEMS_TAG)
+    @DisplayName(AnnotationValues.ORDER_INVENTORY_ITEMS_DISPLAY_NAME)
     public void orderInventoryItemsTest() {
-        loginPage.loginValidUser("standard_user", "secret_sauce");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
         // initial list of items
         List<String> initialNameList = inventoryPage.getItemNameList();
         SoftAssertions softAssertions = new SoftAssertions();
 
         // inventory order name z to a
-        inventoryPage.orderItemsByCriteria("za");
+        inventoryPage.sortItemsByValue("za");
         List<String> zToANameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(zToANameList)
-                .as("Compare Z to A item list with initial item list").isNotEqualTo(initialNameList);
+                .as(AssertDescription.COMPARE_ZA_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
 
         // order price low to high and verify
-        inventoryPage.orderItemsByCriteria("lohi");
+        inventoryPage.sortItemsByValue("lohi");
         List<String> loHiNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(loHiNameList)
-                .as("Compare Low to High item list with initial item list").isNotEqualTo(initialNameList);
+                .as(AssertDescription.COMPARE_LOHI_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
         softAssertions.assertThat(loHiNameList)
-                .as("Compare Low to High item list with Z to A item list").isNotEqualTo(zToANameList);
+                .as(AssertDescription.COMPARE_LOHI_LIST_TO_ZA_LIST).isNotEqualTo(zToANameList);
 
         // order name high to low and verify
-        inventoryPage.orderItemsByCriteria("hilo");
+        inventoryPage.sortItemsByValue("hilo");
         List<String> hiLoNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(hiLoNameList)
-                .as("Compare High to Low item list with initial item list").isNotEqualTo(initialNameList);
+                .as(AssertDescription.COMPARE_HILO_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
         softAssertions.assertThat(hiLoNameList)
-                .as("Compare High to Low item list with Z to A item list").isNotEqualTo(zToANameList);
+                .as(AssertDescription.COMPARE_HILO_LIST_TO_ZA_LIST).isNotEqualTo(zToANameList);
         softAssertions.assertThat(hiLoNameList)
-                .as("Compare High to Low item list with Low to High item list").isNotEqualTo(loHiNameList);
+                .as(AssertDescription.COMPARE_HILO_LIST_TO_LOHI_LIST).isNotEqualTo(loHiNameList);
 
         // inventory order name a to z and verify
-        inventoryPage.orderItemsByCriteria("az");
+        inventoryPage.sortItemsByValue("az");
         List<String> atoZNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(atoZNameList)
-                .as("Compare A to Z item list with initial item list").isEqualTo(initialNameList);
+                .as(AssertDescription.COMPARE_AZ_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
         softAssertions.assertThat(atoZNameList)
-                .as("Compare A to Z item list with Z to A item list").isNotEqualTo(zToANameList);
+                .as(AssertDescription.COMPARE_AZ_LIST_TO_ZA_LIST).isNotEqualTo(zToANameList);
         softAssertions.assertThat(atoZNameList)
-                .as("Compare A to Z item list with Low to High item list").isNotEqualTo(loHiNameList);
+                .as(AssertDescription.COMPARE_AZ_LIST_TO_LOHI_LIST).isNotEqualTo(loHiNameList);
         softAssertions.assertThat(atoZNameList)
-                .as("Compare A to Z item list with High to Low item list").isNotEqualTo(hiLoNameList);
+                .as(AssertDescription.COMPARE_AZ_LIST_TO_HILO_LIST).isNotEqualTo(hiLoNameList);
 
         softAssertions.assertAll();
     }
 
     @Test
-    @Tag("verify-checkout-data")
-    @DisplayName("Verify checkout user data test")
+    @Tag(AnnotationValues.VERIFY_CHECKOUT_DATA_TAG)
+    @DisplayName(AnnotationValues.VERIFY_CHECKOUT_DATA_DISPLAY_NAME)
     public void verifyCheckoutUserDataTest() {
-        loginPage.loginValidUser("standard_user", "secret_sauce");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
         inventoryPage.addItemsAndGoToCart();
         cartPage.checkout();
         SoftAssertions softAssertions = new SoftAssertions();
@@ -138,19 +140,22 @@ public class StandardUserTest {
         // Add nothing (verify firstName)
         checkOutStepOnePage.continueShopping();
         softAssertions.assertThat(checkOutStepOnePage.getFieldErrorMessage())
-                .as("Compare first name error message").isEqualTo("Error: First Name is required");
+                .as(AssertDescription.COMPARE_FIRST_NAME_ERROR_MESSAGE)
+                .isEqualTo(ErrorMessage.FIRST_NAME_REQUIRED.getMessage());
 
         // put only FirstName (verify lastName)
-        checkOutStepOnePage.putFirstName("Alexander");
+        checkOutStepOnePage.putFirstName(Client.EXAMPLE_CLIENT.getFirstName());
         checkOutStepOnePage.continueShopping();
         softAssertions.assertThat(checkOutStepOnePage.getFieldErrorMessage())
-                .as("Compare last name error message").isEqualTo("Error: Last Name is required");
+                .as(AssertDescription.COMPARE_LAST_NAME_ERROR_MESSAGE)
+                .isEqualTo(ErrorMessage.SECOND_NAME_REQUIRED.getMessage());
 
         // put only LastName (verify firstName)
-        checkOutStepOnePage.putLastName("Kepler");
+        checkOutStepOnePage.putLastName(Client.EXAMPLE_CLIENT.getLastName());
         checkOutStepOnePage.continueShopping();
         softAssertions.assertThat(checkOutStepOnePage.getFieldErrorMessage())
-                .as("Compare postal code error message").isEqualTo("Error: Postal Code is required");
+                .as(AssertDescription.COMPARE_POSTAL_CODE_ERROR_MESSAGE)
+                .isEqualTo(ErrorMessage.POSTAL_CODE_REQUIRED.getMessage());
 
         softAssertions.assertAll();
     }

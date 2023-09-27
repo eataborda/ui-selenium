@@ -52,7 +52,7 @@ public class InventoryPage extends BasePage {
     }
 
     // Options: az, za, lohi, hilo
-    public void orderItemsByCriteria(String value) {
+    public void sortItemsByValue(String value) {
         selectByValue(driver.findElement(productSortContainer), value);
     }
 
