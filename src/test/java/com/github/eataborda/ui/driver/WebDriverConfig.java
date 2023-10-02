@@ -22,6 +22,7 @@ public class WebDriverConfig {
     public static WebDriver setupBrowser(WebDriver driver) {
         String browser = getParameterValue("driver");
         String arguments = getParameterValue("driverArguments");
+
         switch (browser) {
             case "chrome":
                 if (!Objects.equals(arguments, "")) {
