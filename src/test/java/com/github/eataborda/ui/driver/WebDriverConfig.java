@@ -1,10 +1,16 @@
 package com.github.eataborda.ui.driver;
 
+import com.github.eataborda.ui.pages.BasePage;
 import com.github.eataborda.ui.resources.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 public class WebDriverConfig {
 
@@ -15,17 +21,24 @@ public class WebDriverConfig {
 
     public static WebDriver setupBrowser(WebDriver driver) {
         String browser = getParameterValue("driver");
+        String arguments = getParameterValue("driverArguments");
         switch (browser) {
             case "chrome":
-                driver = new ChromeDriver();
-            break;
+                if (!Objects.equals(arguments, "")) {
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments(arguments);
+                    driver = new ChromeDriver(options);
+                } else {
+                    driver = new ChromeDriver();
+                }
+                break;
             case "firefox":
                 driver = new FirefoxDriver();
 
-            break;
+                break;
             case "edge":
                 driver = new EdgeDriver();
-            break;
+                break;
             default:
         }
         return driver;
@@ -34,6 +47,7 @@ public class WebDriverConfig {
     private String getEnvironmentVariable(String key) {
         return System.getenv(key);
     }
+
     private static String getParameterValue(String key) {
         return System.getProperty(key);
     }

@@ -53,7 +53,7 @@ tasks.withType<Test> {
     systemProperty("driver", System.getProperty("driver"))
     systemProperty("includeTags", System.getProperty("includeTags"))
     systemProperty("excludeTags", System.getProperty("excludeTags"))
-    systemProperty("chrome.switches", System.getProperty("chrome.switches"))
+    systemProperty("driverArguments", System.getProperty("driverArguments"))
 }
 
 dependencies {

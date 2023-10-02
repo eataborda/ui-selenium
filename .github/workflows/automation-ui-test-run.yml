@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Gradle
-        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -Dchrome.switches="--window-size=1920,1080;--headless;"
+        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless;--window-size=1920,1080;"
       - name: Automation ui test result
         uses: actions/upload-artifact@v2
         with:
-          name: automation-ui-test-result
+          name: selenium-ui-test-result
           path: build/reports/tests/test
           retention-days: 3
