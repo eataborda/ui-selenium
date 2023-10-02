@@ -16,8 +16,8 @@ public final class AnnotationValues {
     public static final String REMOVE_CART_DISPLAY_NAME = "Remove cart items test";
     public static final String CART_ITEMS_PERSISTENCE_TAG = "cart-items-persistence";
     public static final String CART_ITEMS_PERSISTENCE_DISPLAY_NAME = "Cart items persistence test";
-    public static final String ORDER_INVENTORY_ITEMS_TAG = "cart-items-persistence";
-    public static final String ORDER_INVENTORY_ITEMS_DISPLAY_NAME = "Cart items persistence test";
+    public static final String ORDER_INVENTORY_ITEMS_TAG = "order-inventory-items";
+    public static final String ORDER_INVENTORY_ITEMS_DISPLAY_NAME = "Order inventory items test";
     public static final String VERIFY_CHECKOUT_DATA_TAG = "verify-checkout-data";
     public static final String VERIFY_CHECKOUT_DATA_DISPLAY_NAME = "Verify checkout user data test";
     // locked out user
@@ -30,6 +30,5 @@ public final class AnnotationValues {
     public static final String INVENTORY_ITEM_SRC_ISSUES_DISPLAY_NAME = "Inventory items with src issues test";
     public static final String INVENTORY_FILTER_ISSUES_TAG = "inventory-filter-issues";
     public static final String INVENTORY_FILTER_ISSUES_DISPLAY_NAME = "Inventory filter issues test";
-
-
+    
 }

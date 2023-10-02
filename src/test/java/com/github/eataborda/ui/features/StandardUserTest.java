@@ -90,13 +90,13 @@ public class StandardUserTest {
         SoftAssertions softAssertions = new SoftAssertions();
 
         // inventory order name z to a
-        inventoryPage.sortItemsByValue("za");
+        inventoryPage.sortItemsByValue(ProductSortOption.Z_TO_A_OPTION.getValue());
         List<String> zToANameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(zToANameList)
                 .as(AssertDescription.COMPARE_ZA_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
 
         // order price low to high and verify
-        inventoryPage.sortItemsByValue("lohi");
+        inventoryPage.sortItemsByValue(ProductSortOption.LO_TO_HI_OPTION.getValue());
         List<String> loHiNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(loHiNameList)
                 .as(AssertDescription.COMPARE_LOHI_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
@@ -104,7 +104,7 @@ public class StandardUserTest {
                 .as(AssertDescription.COMPARE_LOHI_LIST_TO_ZA_LIST).isNotEqualTo(zToANameList);
 
         // order name high to low and verify
-        inventoryPage.sortItemsByValue("hilo");
+        inventoryPage.sortItemsByValue(ProductSortOption.HI_TO_LO_OPTION.getValue());
         List<String> hiLoNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(hiLoNameList)
                 .as(AssertDescription.COMPARE_HILO_LIST_TO_INITIAL_LIST).isNotEqualTo(initialNameList);
@@ -114,7 +114,7 @@ public class StandardUserTest {
                 .as(AssertDescription.COMPARE_HILO_LIST_TO_LOHI_LIST).isNotEqualTo(loHiNameList);
 
         // inventory order name a to z and verify
-        inventoryPage.sortItemsByValue("az");
+        inventoryPage.sortItemsByValue(ProductSortOption.A_TO_Z_OPTION.getValue());
         List<String> atoZNameList = inventoryPage.getItemNameList();
         softAssertions.assertThat(atoZNameList)
                 .as(AssertDescription.COMPARE_AZ_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
@@ -137,7 +137,7 @@ public class StandardUserTest {
         cartPage.checkout();
         SoftAssertions softAssertions = new SoftAssertions();
 
-        // Add nothing (verify firstName)
+        // add nothing (verify firstName)
         checkOutStepOnePage.continueShopping();
         softAssertions.assertThat(checkOutStepOnePage.getFieldErrorMessage())
                 .as(AssertDescription.COMPARE_FIRST_NAME_ERROR_MESSAGE)

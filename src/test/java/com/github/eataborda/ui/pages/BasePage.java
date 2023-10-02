@@ -12,13 +12,16 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BasePage {
     private final WebDriver driver;
 
     private final Logger logger = LoggerFactory.getLogger(BasePage.class);
-    private final String screenshots = getParameterValue("screenshots");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -43,19 +46,19 @@ public class BasePage {
     public void sendKeys(WebElement webElement, String text) {
         getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
-        logger.info("Send '" + text + "' to "+webElement.getAttribute("id"));
+        logger.info("Send '" + text + "' to " + webElement.getAttribute("id"));
     }
 
     public void click(WebElement webElement) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
-        logger.info("Click on "+webElement.getAttribute("id"));
+        logger.info("Click on " + webElement.getAttribute("id"));
         webElement.click();
     }
 
     public void selectByValue(WebElement webElement, String value) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
         Select select = new Select(webElement);
-        logger.info("Select '"+value+"' from "+webElement.getAttribute("class"));
+        logger.info("Select '" + value + "' from " + webElement.getAttribute("class"));
         select.selectByValue(value);
     }
 
@@ -69,9 +72,11 @@ public class BasePage {
                 .sendKeys(Keys.END).perform();
     }
 
-    private void takeSeleniumScreenshot() {
+    private void takeScreenshot() {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String currentDate = String.valueOf(System.currentTimeMillis());
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmm-sS");
+        String currentDate = dateFormat.format(date);
         String fileExtension = ".png";
         String filePath = Paths.get("").toAbsolutePath().toString().concat("/evidence");
         String fileName = "\\evidence_".concat(currentDate).concat(fileExtension);

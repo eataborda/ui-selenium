@@ -3,6 +3,8 @@ package com.github.eataborda.ui.features;
 import com.github.eataborda.ui.driver.WebDriverConfig;
 import com.github.eataborda.ui.pages.LoginPage;
 import com.github.eataborda.ui.resources.AnnotationValues;
+import com.github.eataborda.ui.resources.ErrorMessage;
+import com.github.eataborda.ui.resources.LoginUser;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
@@ -31,15 +33,17 @@ public class LockedOutUserTest {
     @Tag(AnnotationValues.LOGIN_LOCKED_USER_TAG)
     @DisplayName(AnnotationValues.LOGIN_LOCKED_USER_DISPLAY_NAME)
     public void lockedOutUserTest() {
-        loginPage.loginValidUser("locked_out_user", "secret_sauce");
-        assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getFieldErrorMessage(), "Message doesn't have the expected value");
+        loginPage.loginValidUser(LoginUser.LOCKED_OUT_USER.getUser(), LoginUser.LOCKED_OUT_USER.getPassword());
+        assertEquals(ErrorMessage.LOCKED_OUT_USER.getMessage(),
+                loginPage.getFieldErrorMessage(), ErrorMessage.NOT_EXPECTED_MESSAGE.getMessage());
     }
 
     @Test
     @Tag(AnnotationValues.LOGIN_WRONG_PASSWORD_TAG)
     @DisplayName(AnnotationValues.LOGIN_WRONG_PASSWORD_DISPLAY_NAME)
     public void wrongPasswordTest() {
-        loginPage.loginValidUser("standard_user", "wrong_sauce");
-        assertEquals("Epic sadface: Username and password do not match any user in this service", loginPage.getFieldErrorMessage(), "Message doesn't have the expected value");
+        loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.WRONG_USER.getPassword());
+        assertEquals(ErrorMessage.USER_PASSWORD_NOT_MATCH.getMessage(),
+                loginPage.getFieldErrorMessage(), ErrorMessage.NOT_EXPECTED_MESSAGE.getMessage());
     }
 }

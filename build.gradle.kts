@@ -50,8 +50,6 @@ tasks.test {
 }
 
 tasks.withType<Test> {
-    systemProperty("tags", System.getProperty("tags"))
-    systemProperty("screenshots", System.getProperty("screenshots"))
     systemProperty("driver", System.getProperty("driver"))
     systemProperty("includeTags", System.getProperty("includeTags"))
     systemProperty("excludeTags", System.getProperty("excludeTags"))
@@ -59,7 +57,7 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.12.1")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.13.0")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("ch.qos.logback:logback-classic:1.4.11")

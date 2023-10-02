@@ -7,8 +7,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class CartPage extends BasePage {
     private final WebDriver driver;
     private final By cartItem = By.xpath("//div[@class='cart_item']");
@@ -53,8 +51,8 @@ public class CartPage extends BasePage {
         click(removeSauceLabsFleeceJacket);
     }
 
-    public Integer getNumberOfItems(){
-       return driver.findElements(cartItem).size();
+    public Integer getNumberOfItems() {
+        return driver.findElements(cartItem).size();
     }
 
     public void continueShopping() {
