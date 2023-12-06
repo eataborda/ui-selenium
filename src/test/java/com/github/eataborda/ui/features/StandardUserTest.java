@@ -150,7 +150,7 @@ public class StandardUserTest {
                 .as(AssertDescription.COMPARE_LAST_NAME_ERROR_MESSAGE)
                 .isEqualTo(ErrorMessage.SECOND_NAME_REQUIRED.getMessage());
 
-        // put only LastName (verify firstName )
+        // put only LastName (verify firstName)
         checkOutStepOnePage.putLastName(Client.EXAMPLE_CLIENT.getLastName());
         checkOutStepOnePage.continueShopping();
         softAssertions.assertThat(checkOutStepOnePage.getFieldErrorMessage())
@@ -158,5 +158,6 @@ public class StandardUserTest {
                 .isEqualTo(ErrorMessage.POSTAL_CODE_REQUIRED.getMessage());
 
         softAssertions.assertAll();
+
     }
 }
