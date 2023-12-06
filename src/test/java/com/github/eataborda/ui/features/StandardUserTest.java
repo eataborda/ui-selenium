@@ -158,6 +158,5 @@ public class StandardUserTest {
                 .isEqualTo(ErrorMessage.POSTAL_CODE_REQUIRED.getMessage());
 
         softAssertions.assertAll();
-
     }
 }
