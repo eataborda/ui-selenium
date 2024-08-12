@@ -16,7 +16,7 @@ public class InventoryPage extends BasePage {
     private HeaderElement headerElement;
 
     private final By productSortContainer = By.className("product_sort_container");
-    private final By inventoryItemName = By.xpath("//div[@class='inventory_item_name']");
+    private final By inventoryItemName = By.xpath("//div[@data-test='inventory-item-name']");
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     @CacheLookup
     WebElement backPackAddToCartButton;

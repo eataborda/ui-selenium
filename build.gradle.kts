@@ -6,7 +6,7 @@ plugins {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(22))
     }
 }
 
@@ -57,11 +57,11 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.13.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
-    testImplementation("org.assertj:assertj-core:3.24.2")
-    testImplementation("ch.qos.logback:logback-classic:1.4.11")
-    testImplementation("ch.qos.logback:logback-core:1.4.11")
-    testImplementation("org.slf4j:slf4j-simple:2.0.9")
-    testImplementation("commons-io:commons-io:2.13.0")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.23.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
+    testImplementation("org.assertj:assertj-core:3.26.3")
+    testImplementation("ch.qos.logback:logback-classic:1.5.6")
+    testImplementation("ch.qos.logback:logback-core:1.5.6")
+    testImplementation("org.slf4j:slf4j-simple:2.0.16")
+    testImplementation("commons-io:commons-io:2.16.1")
 }
