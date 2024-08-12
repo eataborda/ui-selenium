@@ -85,7 +85,7 @@ public class StandardUserTest {
     @DisplayName(AnnotationValues.ORDER_INVENTORY_ITEMS_DISPLAY_NAME)
     public void orderInventoryItemsTest() {
         loginPage.loginValidUser(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
-        //// initial list of items
+        // initial list of items
         List<String> initialNameList = inventoryPage.getItemNameList();
         SoftAssertions softAssertions = new SoftAssertions();
 
