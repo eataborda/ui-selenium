@@ -1,5 +1,5 @@
 [![automation-ui-test-run](https://github.com/eataborda/ui-selenium/actions/workflows/automation-ui-test-run.yml/badge.svg)](https://github.com/eataborda/ui-selenium/actions/workflows/automation-ui-test-run.yml)
-[![Gradle](https://img.shields.io/badge/Gradle-8.3-blue)](https://gradle.org/releases/)
+[![Gradle](https://img.shields.io/badge/Gradle-8.9-blue)](https://gradle.org/releases/)
 [![Junit5](https://img.shields.io/badge/Junit5-5.10.3-blue)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine)
 [![Selenium](https://img.shields.io/badge/Selenium-4.23.1-blue)](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java)
 
