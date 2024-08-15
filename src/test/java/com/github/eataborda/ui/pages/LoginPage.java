@@ -26,10 +26,6 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
     public void loginValidUser(String userName, String password) {
         sendKeys(userNameTextBox,userName);
         sendKeys(passwordTextBox,password);

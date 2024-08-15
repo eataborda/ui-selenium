@@ -40,20 +40,21 @@ public class InventoryPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public void addItemsAndGoToCart() {
-        addItems();
-        goToCart();
+    public void addItem(String itemName) {
+        addItemByNameToCart(itemName);
     }
 
-    public void addItems() {
-        click(backPackAddToCartButton);
-        click(boltTShirtAddToCartButton);
-        click(fleeceJacketAddToCartButton);
+    public void addItemByNameToCart(String itemName){
+        click(driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"+itemName+"']//ancestor::div[@data-test='inventory-item-description']//button[text()=\"Add to cart\"]")));
     }
 
     // Options: az, za, lohi, hilo
     public void sortItemsByValue(String value) {
         selectByValue(driver.findElement(productSortContainer), value);
+    }
+
+    public void sortItemsByVisibleText(String visibleText) {
+        selectByVisibleText(driver.findElement(productSortContainer), visibleText);
     }
 
     public List<String> getItemNameList() {

@@ -51,6 +51,10 @@ public class CartPage extends BasePage {
         click(removeSauceLabsFleeceJacket);
     }
 
+    public void removeItem(String itemName) {
+        click(driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='" + itemName + "']//ancestor::div[@class='cart_item_label']//button[text()=\"Remove\"]")));
+    }
+
     public Integer getNumberOfItems() {
         return driver.findElements(cartItem).size();
     }

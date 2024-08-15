@@ -1,5 +1,6 @@
 package com.github.eataborda.ui.pages;
 
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -30,7 +31,7 @@ public class BasePage {
     public FluentWait<WebDriver> getFluentWait() {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
         fluentWait.withTimeout(Duration.ofSeconds(10));
-        fluentWait.pollingEvery(Duration.ofMillis(250));
+        fluentWait.pollingEvery(Duration.ofMillis(300));
         fluentWait.ignoring(NoSuchElementException.class);
         return fluentWait;
     }
@@ -38,28 +39,47 @@ public class BasePage {
     public FluentWait<WebDriver> getLongFluentWait() {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
         fluentWait.withTimeout(Duration.ofSeconds(10));
-        fluentWait.pollingEvery(Duration.ofMillis(350));
+        fluentWait.pollingEvery(Duration.ofMillis(400));
         fluentWait.ignoring(NoSuchElementException.class);
         return fluentWait;
+    }
+
+    public void waitUntilElementIsVisible(WebElement webElement){
+        getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public void sendKeys(WebElement webElement, String text) {
         getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
-        logger.info("Send '" + text + "' to " + webElement.getAttribute("id"));
+        String message = "Send '" + text + "' to " + webElement.getAttribute("placeholder");
+        logger.info(message);
+        Allure.step(message);
     }
 
     public void click(WebElement webElement) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
-        logger.info("Click on " + webElement.getAttribute("id"));
+        String message = "Click on " + webElement.getAttribute("id");
+        logger.info(message);
+        Allure.step(message);
         webElement.click();
     }
 
     public void selectByValue(WebElement webElement, String value) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
         Select select = new Select(webElement);
-        logger.info("Select '" + value + "' from " + webElement.getAttribute("class"));
+        String message = "Select '" + value + "' from " + webElement.getAttribute("class");
+        logger.info(message);
+        Allure.step(message);
         select.selectByValue(value);
+    }
+
+    public void selectByVisibleText(WebElement webElement, String visibleText){
+        getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        Select select = new Select(webElement);
+        String message = "Select '" + visibleText + "' from " + webElement.getAttribute("class");
+        logger.info(message);
+        Allure.step(message);
+        select.selectByVisibleText(visibleText);
     }
 
     public void scrollPageDown() {
@@ -85,6 +105,10 @@ public class BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
     }
 
     private String getEnvironmentVariable(String key) {

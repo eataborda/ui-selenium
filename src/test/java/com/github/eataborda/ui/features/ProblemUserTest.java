@@ -6,6 +6,9 @@ import com.github.eataborda.ui.pages.CheckOutStepOnePage;
 import com.github.eataborda.ui.pages.InventoryPage;
 import com.github.eataborda.ui.pages.LoginPage;
 import com.github.eataborda.ui.resources.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Tags(value = {@Tag(AnnotationValues.PROBLEM_USER_TAG), @Tag(AnnotationValues.REGRESSION_TAG)})
+@DisplayName("Problem User")
+@Epic("Inventory Issues")
 public class ProblemUserTest {
     public WebDriver driver;
     private LoginPage loginPage;
@@ -43,6 +48,8 @@ public class ProblemUserTest {
     @Test
     @Tag(AnnotationValues.INVENTORY_ITEM_SRC_ISSUES_TAG)
     @DisplayName(AnnotationValues.INVENTORY_ITEM_SRC_ISSUES_DISPLAY_NAME)
+    @Description("Verification of the visual error of the inventory using a problem user")
+    @Feature("Item issues")
     public void inventoryItemsWithIssuesTest() {
         loginPage.loginValidUser(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
         assertNotEquals(0, inventoryPage.getNumberOfRepeatedImageSrc(Path.WRONG_IMAGE_SRC.getValue()),
@@ -54,6 +61,8 @@ public class ProblemUserTest {
     @Test
     @Tag(AnnotationValues.INVENTORY_FILTER_ISSUES_TAG)
     @DisplayName(AnnotationValues.INVENTORY_FILTER_ISSUES_DISPLAY_NAME)
+    @Description("Verification of the inventory filter issues")
+    @Feature("Filter issues")
     public void inventoryFilterIssuesTest() {
         loginPage.loginValidUser(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
         // initial list of items
