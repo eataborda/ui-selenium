@@ -1,19 +1,38 @@
 package com.github.eataborda.ui.steps;
 
-import com.github.eataborda.ui.pages.*;
 import io.qameta.allure.Allure;
-import io.qameta.allure.model.Status;
+import org.assertj.core.api.SoftAssertions;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AssertSteps {
-    public static void junitAssertEquals(String expectedValue, String actualValue, String description, String errorMessage){
-        Allure.step("Assert equals: "+description+" - Expected: "+expectedValue+" - Actual: "+actualValue);
-        assertEquals(expectedValue,actualValue,errorMessage);
+    public static void hardAssertEquals(String expectedValue, String actualValue, String description, String errorMessage) {
+        Allure.step("Assert equals: " + description + " - Expected: " + expectedValue + " - Actual: " + actualValue);
+        assertEquals(expectedValue, actualValue, errorMessage);
     }
 
-    public static void junitAssertEquals(int expectedValue, int actualValue, String description, String errorMessage){
-        Allure.step("Assert equals: "+description+" - Expected: "+expectedValue+" - Actual: "+actualValue);
-        assertEquals(expectedValue,actualValue,errorMessage);
+    public static void hardAssertEquals(int expectedValue, int actualValue, String description, String errorMessage) {
+        Allure.step("Assert equals: " + description + " - Expected: " + expectedValue + " - Actual: " + actualValue);
+        assertEquals(expectedValue, actualValue, errorMessage);
+    }
+
+    public static void softAssertIsNotEqualTo(List<String> actualList, List<String> initialList, String assertionDescription, SoftAssertions softAssertions) {
+        Allure.step("Assertion Is Not Equal To: " + assertionDescription + " - Actual list: " + actualList + " - Initial list: " + initialList);
+        softAssertions.assertThat(actualList)
+                .as(assertionDescription).isNotEqualTo(initialList);
+    }
+
+    public static void softAssertIsEqualTo(List<String> actualList, List<String> initialList, String assertionDescription, SoftAssertions softAssertions) {
+        Allure.step("Assertion Is Equal To: " + assertionDescription + " - Actual list: " + actualList + " - Initial list: " + initialList);
+        softAssertions.assertThat(actualList)
+                .as(assertionDescription).isEqualTo(initialList);
+    }
+
+    public static void softAssertIsEqualTo(String actual, String expected, String assertionDescription, SoftAssertions softAssertions) {
+        Allure.step("Assertion Is Equal To: " + assertionDescription + " - Actual: " + actual + " - Expected: " + expected);
+        softAssertions.assertThat(actual)
+                .as(assertionDescription).isEqualTo(expected);
     }
 }

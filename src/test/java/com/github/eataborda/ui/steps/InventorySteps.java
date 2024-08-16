@@ -1,6 +1,7 @@
 package com.github.eataborda.ui.steps;
 
 import com.github.eataborda.ui.pages.InventoryPage;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class InventorySteps {
     }
 
 
-    @Step("Get item name list")
     public List<String> getItemNameList() {
         return inventoryPage.getItemNameList();
     }
