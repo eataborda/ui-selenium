@@ -16,11 +16,13 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
           architecture: x64
-      - name: Build with Gradle
+      - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;"
+      - name: Allure report generation
+        run: allure generate build/allure-results --clean
       - name: Automation ui test result
         uses: actions/upload-artifact@v4
         with:
           name: selenium-ui-test-result
-          path: build/reports/tests/test
+          path: allure-report
           retention-days: 3
