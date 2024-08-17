@@ -3,8 +3,6 @@ package com.github.eataborda.ui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
@@ -17,17 +15,6 @@ public class InventoryPage extends BasePage {
 
     private final By productSortContainer = By.className("product_sort_container");
     private final By inventoryItemName = By.xpath("//div[@data-test='inventory-item-name']");
-    @FindBy(id = "add-to-cart-sauce-labs-backpack")
-    @CacheLookup
-    WebElement backPackAddToCartButton;
-
-    @FindBy(id = "add-to-cart-sauce-labs-bolt-t-shirt")
-    @CacheLookup
-    WebElement boltTShirtAddToCartButton;
-
-    @FindBy(id = "add-to-cart-sauce-labs-fleece-jacket")
-    @CacheLookup
-    WebElement fleeceJacketAddToCartButton;
 
     public InventoryPage(WebDriver driver) {
         super(driver);
@@ -44,8 +31,8 @@ public class InventoryPage extends BasePage {
         addItemByNameToCart(itemName);
     }
 
-    public void addItemByNameToCart(String itemName){
-        click(driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"+itemName+"']//ancestor::div[@data-test='inventory-item-description']//button[text()=\"Add to cart\"]")));
+    public void addItemByNameToCart(String itemName) {
+        click(driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='" + itemName + "']//ancestor::div[@data-test='inventory-item-description']//button[text()=\"Add to cart\"]")));
     }
 
     // Options: az, za, lohi, hilo
@@ -66,7 +53,7 @@ public class InventoryPage extends BasePage {
         return itemNameList;
     }
 
-    public Integer getNumberOfRepeatedImageSrc(String src){
+    public Integer getNumberOfRepeatedImageSrc(String src) {
         String inventoryItemImageXpath = "//img[@src='".concat(src).concat("']");
         return driver.findElements(By.xpath(inventoryItemImageXpath)).size();
     }

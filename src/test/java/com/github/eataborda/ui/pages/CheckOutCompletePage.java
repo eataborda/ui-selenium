@@ -1,6 +1,5 @@
 package com.github.eataborda.ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckOutCompletePage extends BasePage {
     private final WebDriver driver;
 
+    @FindBy(xpath = "//h2[@data-test=\"complete-header\"]")
+    WebElement labelCompleteOrder;
     @FindBy(id = "back-to-products")
     WebElement backHomeButton;
 
@@ -23,6 +24,7 @@ public class CheckOutCompletePage extends BasePage {
     }
 
     public void submitBackHome() {
-        click(driver.findElement(By.id("back-to-products")));
+        waitUntilElementIsVisible(labelCompleteOrder);
+        click(backHomeButton);
     }
 }

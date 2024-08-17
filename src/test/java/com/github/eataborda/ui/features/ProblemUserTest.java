@@ -1,11 +1,12 @@
 package com.github.eataborda.ui.features;
 
 import com.github.eataborda.ui.driver.WebDriverConfig;
-import com.github.eataborda.ui.pages.CartPage;
-import com.github.eataborda.ui.pages.CheckOutStepOnePage;
 import com.github.eataborda.ui.pages.InventoryPage;
 import com.github.eataborda.ui.pages.LoginPage;
 import com.github.eataborda.ui.resources.*;
+import com.github.eataborda.ui.steps.AssertSteps;
+import com.github.eataborda.ui.steps.InventorySteps;
+import com.github.eataborda.ui.steps.LoginSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -15,27 +16,20 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 @Tags(value = {@Tag(AnnotationValues.PROBLEM_USER_TAG), @Tag(AnnotationValues.REGRESSION_TAG)})
 @DisplayName("Problem User")
 @Epic("Inventory Issues")
 public class ProblemUserTest {
     public WebDriver driver;
-    private LoginPage loginPage;
-    private InventoryPage inventoryPage;
-    private CartPage cartPage;
-    private CheckOutStepOnePage checkOutStepOnePage;
+    private LoginSteps loginSteps;
+    private InventorySteps inventorySteps;
 
     @BeforeEach
     public void setupTest() {
         driver = WebDriverConfig.setupBrowser(driver);
         WebDriverConfig.setupTest(driver);
-        loginPage = new LoginPage(driver);
-        inventoryPage = new InventoryPage(driver);
-        cartPage = new CartPage(driver);
-        checkOutStepOnePage = new CheckOutStepOnePage(driver);
+        loginSteps = new LoginSteps(new LoginPage(driver));
+        inventorySteps = new InventorySteps(new InventoryPage(driver));
     }
 
     @AfterEach
@@ -51,11 +45,11 @@ public class ProblemUserTest {
     @Description("Verification of the visual error of the inventory using a problem user")
     @Feature("Item issues")
     public void inventoryItemsWithIssuesTest() {
-        loginPage.loginValidUser(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
-        assertNotEquals(0, inventoryPage.getNumberOfRepeatedImageSrc(Path.WRONG_IMAGE_SRC.getValue()),
-                ErrorMessage.ITEMS_HAVE_EXPECTED_IMAGE_SRC.getMessage());
-        assertEquals(6, inventoryPage.getNumberOfRepeatedImageSrc(Path.WRONG_IMAGE_SRC.getValue()),
-                ErrorMessage.ITEMS_HAVE_REPEATED_IMAGE_SRC.getMessage());
+        SoftAssertions softAssertions = new SoftAssertions();
+        loginSteps.login(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
+
+        AssertSteps.softAssertIsNotEqualTo(inventorySteps.getNumberOfRepeatedImageSrc(Path.WRONG_IMAGE_SRC.getValue()), 0, AssertDescription.INVENTORY_ITEMS_REPEATED_SRC_ISSUE, softAssertions);
+        AssertSteps.softAssertIsEqualTo(inventorySteps.getNumberOfRepeatedImageSrc(Path.WRONG_IMAGE_SRC.getValue()), 6, AssertDescription.INVENTORY_ITEMS_REPEATED_SRC_COUNT, softAssertions);
     }
 
     @Test
@@ -64,34 +58,31 @@ public class ProblemUserTest {
     @Description("Verification of the inventory filter issues")
     @Feature("Filter issues")
     public void inventoryFilterIssuesTest() {
-        loginPage.loginValidUser(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
-        // initial list of items
-        List<String> initialNameList = inventoryPage.getItemNameList();
         SoftAssertions softAssertions = new SoftAssertions();
+        loginSteps.login(LoginUser.PROBLEM_USER.getUser(), LoginUser.PROBLEM_USER.getPassword());
+
+        // initial list of items
+        List<String> initialNameList = inventorySteps.getItemNameList();
 
         // inventory order name z to a
-        inventoryPage.sortItemsByValue(ProductSortOption.Z_TO_A_OPTION.getValue());
-        List<String> zToANameList = inventoryPage.getItemNameList();
-        softAssertions.assertThat(zToANameList)
-                .as(AssertDescription.COMPARE_ZA_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
+        inventorySteps.sortItemsByVisibleText(ProductSortOption.Z_TO_A_OPTION.getVisibleText());
+        List<String> zToANameList = inventorySteps.getItemNameList();
+        AssertSteps.softAssertIsEqualTo(zToANameList, initialNameList, AssertDescription.COMPARE_ZA_LIST_TO_INITIAL_LIST_EQUALS, softAssertions);
 
         // order price low to high and verify
-        inventoryPage.sortItemsByValue(ProductSortOption.LO_TO_HI_OPTION.getValue());
-        List<String> loHiNameList = inventoryPage.getItemNameList();
-        softAssertions.assertThat(loHiNameList)
-                .as(AssertDescription.COMPARE_LOHI_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
+        inventorySteps.sortItemsByVisibleText(ProductSortOption.LO_TO_HI_OPTION.getVisibleText());
+        List<String> loHiNameList = inventorySteps.getItemNameList();
+        AssertSteps.softAssertIsEqualTo(loHiNameList, initialNameList, AssertDescription.COMPARE_LOHI_LIST_TO_INITIAL_LIST_EQUALS, softAssertions);
 
         // order name high to low and verify
-        inventoryPage.sortItemsByValue(ProductSortOption.HI_TO_LO_OPTION.getValue());
-        List<String> hiLoNameList = inventoryPage.getItemNameList();
-        softAssertions.assertThat(hiLoNameList)
-                .as(AssertDescription.COMPARE_HILO_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
+        inventorySteps.sortItemsByVisibleText(ProductSortOption.HI_TO_LO_OPTION.getVisibleText());
+        List<String> hiLoNameList = inventorySteps.getItemNameList();
+        AssertSteps.softAssertIsEqualTo(hiLoNameList, initialNameList, AssertDescription.COMPARE_HILO_LIST_TO_INITIAL_LIST_EQUALS, softAssertions);
 
         // inventory order name a to z and verify
-        inventoryPage.sortItemsByValue(ProductSortOption.A_TO_Z_OPTION.getValue());
-        List<String> atoZNameList = inventoryPage.getItemNameList();
-        softAssertions.assertThat(atoZNameList)
-                .as(AssertDescription.COMPARE_AZ_LIST_TO_INITIAL_LIST).isEqualTo(initialNameList);
+        inventorySteps.sortItemsByVisibleText(ProductSortOption.A_TO_Z_OPTION.getVisibleText());
+        List<String> atoZNameList = inventorySteps.getItemNameList();
+        AssertSteps.softAssertIsEqualTo(atoZNameList, initialNameList, AssertDescription.COMPARE_AZ_LIST_TO_INITIAL_LIST_EQUALS, softAssertions);
 
         softAssertions.assertAll();
     }

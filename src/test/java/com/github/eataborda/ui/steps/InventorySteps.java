@@ -47,6 +47,10 @@ public class InventorySteps {
         inventoryPage.sortItemsByVisibleText(visibleText);
     }
 
+    public Integer getNumberOfRepeatedImageSrc(String src) {
+        return inventoryPage.getNumberOfRepeatedImageSrc(src);
+    }
+
     @Step("Logout")
     public void logout() {
         inventoryPage.logout();

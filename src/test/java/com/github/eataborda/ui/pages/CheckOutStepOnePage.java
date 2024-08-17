@@ -1,6 +1,5 @@
 package com.github.eataborda.ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,7 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckOutStepOnePage extends BasePage {
     private final WebDriver driver;
 
-    private final By fieldErrorMessage = By.xpath("//h3[@data-test='error']");
+    @FindBy(xpath = "//h3[@data-test='error']")
+    WebElement fieldErrorMessage;
 
     @FindBy(id = "first-name")
     @CacheLookup
@@ -70,6 +70,6 @@ public class CheckOutStepOnePage extends BasePage {
     }
 
     public String getFieldErrorMessage() {
-        return driver.findElement(fieldErrorMessage).getText();
+        return fieldErrorMessage.getText();
     }
 }

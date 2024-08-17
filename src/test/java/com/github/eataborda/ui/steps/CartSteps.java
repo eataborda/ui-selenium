@@ -33,4 +33,8 @@ public class CartSteps {
     public void continueShopping() {
         cartPage.continueShopping();
     }
+
+    public Integer getNumberOfItems() {
+        return cartPage.getNumberOfItems();
+    }
 }

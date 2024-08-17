@@ -31,7 +31,7 @@ public class BasePage {
     public FluentWait<WebDriver> getFluentWait() {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
         fluentWait.withTimeout(Duration.ofSeconds(10));
-        fluentWait.pollingEvery(Duration.ofMillis(300));
+        fluentWait.pollingEvery(Duration.ofMillis(400));
         fluentWait.ignoring(NoSuchElementException.class);
         return fluentWait;
     }
@@ -39,7 +39,7 @@ public class BasePage {
     public FluentWait<WebDriver> getLongFluentWait() {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver);
         fluentWait.withTimeout(Duration.ofSeconds(10));
-        fluentWait.pollingEvery(Duration.ofMillis(400));
+        fluentWait.pollingEvery(Duration.ofMillis(550));
         fluentWait.ignoring(NoSuchElementException.class);
         return fluentWait;
     }

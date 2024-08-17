@@ -11,7 +11,15 @@ public class LoginSteps {
     }
 
     @Step("Login with valid user")
-    public void loginValidUser(String userName, String password) {
-        loginPage.loginValidUser(userName,password);
+    public void login(String userName, String password) {
+        loginPage.login(userName,password);
+    }
+
+    public String getCurrentUrl() {
+        return loginPage.getCurrentUrl();
+    }
+
+    public String getFieldErrorMessage(){
+        return loginPage.getFieldErrorMessage();
     }
 }

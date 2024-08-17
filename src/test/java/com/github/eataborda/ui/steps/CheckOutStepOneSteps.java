@@ -28,4 +28,8 @@ public class CheckOutStepOneSteps {
     public void putLastName(String lastName) {
         checkOutStepOnePage.putLastName(lastName);
     }
+
+    public String getFieldErrorMessage() {
+        return checkOutStepOnePage.getFieldErrorMessage();
+    }
 }

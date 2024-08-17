@@ -24,6 +24,12 @@ public class AssertSteps {
                 .as(assertionDescription).isNotEqualTo(initialList);
     }
 
+    public static void softAssertIsNotEqualTo(int actual, int reference, String assertionDescription, SoftAssertions softAssertions) {
+        Allure.step("Assertion Is Not Equal To: " + assertionDescription + " - Actual: " + actual + " - Reference: " + reference);
+        softAssertions.assertThat(actual)
+                .as(assertionDescription).isEqualTo(reference);
+    }
+
     public static void softAssertIsEqualTo(List<String> actualList, List<String> initialList, String assertionDescription, SoftAssertions softAssertions) {
         Allure.step("Assertion Is Equal To: " + assertionDescription + " - Actual list: " + actualList + " - Initial list: " + initialList);
         softAssertions.assertThat(actualList)
@@ -35,4 +41,12 @@ public class AssertSteps {
         softAssertions.assertThat(actual)
                 .as(assertionDescription).isEqualTo(expected);
     }
+
+    public static void softAssertIsEqualTo(int actual, int expected, String assertionDescription, SoftAssertions softAssertions) {
+        Allure.step("Assertion Is Equal To: " + assertionDescription + " - Actual: " + actual + " - Expected: " + expected);
+        softAssertions.assertThat(actual)
+                .as(assertionDescription).isEqualTo(expected);
+    }
+
+
 }
