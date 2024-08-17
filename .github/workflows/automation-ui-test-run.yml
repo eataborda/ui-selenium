@@ -18,8 +18,11 @@ jobs:
           architecture: x64
       - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;"
-      - name: Allure report generation
-        run: allure generate build/allure-results --clean
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          allure_results: build/allure-results
       - name: Automation ui test result
         uses: actions/upload-artifact@v4
         with:
