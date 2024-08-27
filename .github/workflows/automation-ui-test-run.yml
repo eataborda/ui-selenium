@@ -17,7 +17,7 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - name: Install Chrome
-        run: sudo apt install google-chrome-stable
+        run: sudo apt upgrade google-chrome-stable
       - name: Get chrome version
         run: google-chrome --version
       - name: Gradle run
