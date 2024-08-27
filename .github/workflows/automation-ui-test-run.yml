@@ -17,8 +17,6 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - name: Remove Chrome
-        run: sudo apt-get purge chromium-browser
-      - name: Remove Chrome
         run: sudo apt-get purge google-chrome-stable
       - uses: browser-actions/setup-chrome@latest
         with:
