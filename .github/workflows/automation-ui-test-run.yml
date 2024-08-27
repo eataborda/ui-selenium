@@ -16,8 +16,8 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
           architecture: x64
-      - name: Install Chrome
-        run: sudo apt upgrade google-chrome-stable
+      - name: Remove Chrome
+        run: sudo apt-get remove google-chrome-stable
       - name: Get chrome version
         run: google-chrome --version
       - name: Gradle run
