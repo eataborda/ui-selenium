@@ -102,7 +102,7 @@ public class StandardUserTest {
         SoftAssertions softAssertions = new SoftAssertions();
         loginSteps.login(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
 
-        //// initial list of item updatededd
+        //// initial list of item updateded
         List<String> initialNameList = inventorySteps.getItemNameList();
 
         // inventory order name z to a
