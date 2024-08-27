@@ -16,7 +16,7 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
           architecture: x64
-      - uses: browser-actions/setup-chrome@latest
+      - uses: browser-actions/setup-chrome@v1.7.2
         with:
           install-chromedriver: true
       - name: Gradle run
