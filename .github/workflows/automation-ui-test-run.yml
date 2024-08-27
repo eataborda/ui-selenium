@@ -17,6 +17,8 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: browser-actions/setup-chrome@latest
+        with:
+          setup-chromedriver: true
       - name: check current value
         run: | 
           system_profiler SPDisplaysDataType | grep Resolution
