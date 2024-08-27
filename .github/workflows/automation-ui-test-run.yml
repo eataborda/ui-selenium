@@ -17,6 +17,8 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: 128
       - name: Get chrome version
         run: google-chrome --version
       - name: Gradle run
