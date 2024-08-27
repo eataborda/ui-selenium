@@ -10,8 +10,11 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -44,7 +47,7 @@ public class BasePage {
         return fluentWait;
     }
 
-    public void waitUntilElementIsVisible(WebElement webElement){
+    public void waitUntilElementIsVisible(WebElement webElement) {
         getFluentWait().until(ExpectedConditions.visibilityOf(webElement));
     }
 
@@ -54,6 +57,7 @@ public class BasePage {
         String message = "Send '" + text + "' to " + webElement.getAttribute("placeholder");
         logger.info(message);
         Allure.step(message);
+        addScreenshot(message);
     }
 
     public void click(WebElement webElement) {
@@ -62,6 +66,7 @@ public class BasePage {
         logger.info(message);
         Allure.step(message);
         webElement.click();
+        addScreenshot(message);
     }
 
     public void selectByValue(WebElement webElement, String value) {
@@ -71,15 +76,17 @@ public class BasePage {
         logger.info(message);
         Allure.step(message);
         select.selectByValue(value);
+        addScreenshot(message);
     }
 
-    public void selectByVisibleText(WebElement webElement, String visibleText){
+    public void selectByVisibleText(WebElement webElement, String visibleText) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(webElement));
         Select select = new Select(webElement);
         String message = "Select '" + visibleText + "' from " + webElement.getAttribute("class");
         logger.info(message);
         Allure.step(message);
         select.selectByVisibleText(visibleText);
+        addScreenshot(message);
     }
 
     public void scrollPageDown() {
@@ -92,7 +99,7 @@ public class BasePage {
                 .sendKeys(Keys.END).perform();
     }
 
-    private void takeScreenshot() {
+    private void takeSeleniumScreenshot() {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmm-sS");
@@ -104,6 +111,15 @@ public class BasePage {
             FileUtils.copyFile(scrFile, new File(filePath + fileName));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    void addScreenshot(String message) {
+        if (Boolean.parseBoolean(getParameterValue("showAllureAttachments"))) {
+            String filename = message.toLowerCase().replaceAll("'","").replaceAll("[^A-Za-z0-9]", "_");
+            String fileExtension = ".png";
+            String completeFileName = filename.concat(fileExtension);
+            Allure.addAttachment(completeFileName, new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
     }
 

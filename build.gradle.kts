@@ -65,6 +65,8 @@ tasks.withType<Test> {
     systemProperty("includeTags", System.getProperty("includeTags"))
     systemProperty("excludeTags", System.getProperty("excludeTags"))
     systemProperty("driverArguments", System.getProperty("driverArguments"))
+    systemProperty("showAllureAttachments", System.getProperty("showAllureAttachments","true"))
+    systemProperty("junit.jupiter.extensions.autodetection.enabled", true)
 }
 
 dependencies {
