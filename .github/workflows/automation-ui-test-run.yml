@@ -17,8 +17,6 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: 128
       - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;" -DshowAllureAttachments="true"
       - name: Load test report history
