@@ -16,6 +16,8 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
           architecture: x64
+      - name: Remove current Google Chrome installation
+        run: sudo apt-get purge google-chrome-stable
       - uses: browser-actions/setup-chrome@latest
         with:
           chrome-version: 128
