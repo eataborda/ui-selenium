@@ -17,7 +17,7 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: browser-actions/setup-chrome@latest
-        name: check current value
+      - name: check current value
         run: |
             system_profiler SPDisplaysDataType
       - name: Gradle run
