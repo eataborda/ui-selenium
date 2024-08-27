@@ -18,8 +18,7 @@ jobs:
           architecture: x64
       - uses: browser-actions/setup-chrome@latest
         with:
-          chrome-version: 127
-          install-chromedriver: true
+          setup-chromedriver: true
       - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;" -DshowAllureAttachments="true"
       - name: Load test report history
