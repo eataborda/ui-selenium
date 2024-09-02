@@ -41,5 +41,5 @@ Once you have run the tests you can generate the Allure report by running the fo
 ```
 $ allure generate build/allure-results --clean
 ```
-If the command is executed correctly you will be able to see in the root of the project a folder called `allure-report` within this directory
-is the generated HTML report
+After the executed command, you will be able to see in the root of the project a folder called `allure-report`, within this directory
+you can find the generated HTML report
