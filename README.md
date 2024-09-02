@@ -3,7 +3,7 @@
 [![Junit5](https://img.shields.io/badge/Junit5-5.10.3-blue)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine)
 [![Selenium](https://img.shields.io/badge/Selenium-4.24.0-blue)](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java)
 
-# Selenium UI automation test with Java + Junit5 + Gradle + Allure 
+# Selenium automation with Java + Junit5 + Gradle + Allure 
 A basic UI automation using Java + Junit + Selenium + Gradle. Automation
 created to test the [Sauce Demo](https://www.saucedemo.com/) page
 
