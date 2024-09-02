@@ -71,7 +71,7 @@ tasks.withType<Test> {
 
 dependencies {
     agent("org.aspectj:aspectjweaver:${aspectJVersion}")
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.23.1")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.24.0")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
