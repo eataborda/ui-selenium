@@ -4,7 +4,6 @@ import com.github.eataborda.ui.driver.WebDriverConfig;
 import com.github.eataborda.ui.resources.*;
 import com.github.eataborda.ui.pages.*;
 import com.github.eataborda.ui.steps.*;
-import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
@@ -13,9 +12,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
-
 
 @Tags(value = {@Tag(AnnotationValues.STANDARD_USER_TAG),
         @Tag(AnnotationValues.SMOKE_TAG), @Tag(AnnotationValues.REGRESSION_TAG)})
@@ -31,18 +27,6 @@ public class StandardUserTest {
     private CheckOutCompleteSteps checkOutCompleteSteps;
 
     ArrayList<String> itemList = new ArrayList<String>(Arrays.asList("Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt", "Sauce Labs Fleece Jacket"));
-
-    @BeforeAll
-    static void generalConfig() {
-        allureEnvironmentWriter(
-                ImmutableMap.<String, String>builder()
-                        .put("OS", "Linux")
-                        .put("Distribution", "Ubuntu")
-                        .put("Browser", "Chrome")
-                        .put("Browser version", "128")
-                        .build(), "/build/allure-results/"
-        );
-    }
 
     @BeforeEach
     public void setupTest() {
@@ -117,7 +101,7 @@ public class StandardUserTest {
         SoftAssertions softAssertions = new SoftAssertions();
         loginSteps.login(LoginUser.STANDARD_USER.getUser(), LoginUser.STANDARD_USER.getPassword());
 
-        //// initial list of item u
+        //// initial list of item
         List<String> initialNameList = inventorySteps.getItemNameList();
 
         // inventory order name z to a

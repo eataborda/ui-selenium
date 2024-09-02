@@ -9,7 +9,6 @@ public class LoginPage extends BasePage {
     private final WebDriver driver;
     @FindBy(xpath = "//h3[@data-test='error']")
     WebElement fieldErrorMessage;
-    //private final By fieldErrorMessage = By.xpath("//h3[@data-test='error']");
 
     @FindBy(id = "user-name")
     WebElement userNameTextBox;

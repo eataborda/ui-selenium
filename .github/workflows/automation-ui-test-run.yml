@@ -21,7 +21,7 @@ jobs:
           chrome-version: 128
           install-chromedriver: true
       - name: Gradle run
-        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;" -DshowAllureAttachments="true"
+        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;"
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()

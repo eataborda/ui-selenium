@@ -1,6 +1,5 @@
 package com.github.eataborda.ui.driver;
 
-import com.github.eataborda.ui.pages.BasePage;
 import com.github.eataborda.ui.resources.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

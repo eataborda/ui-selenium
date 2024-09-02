@@ -1,7 +1,6 @@
 package com.github.eataborda.ui.steps;
 
 import com.github.eataborda.ui.pages.InventoryPage;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 
 import java.util.ArrayList;

@@ -10,9 +10,7 @@ public final class AssertDescription {
     public static final String COMPARE_HILO_LIST_TO_INITIAL_LIST_EQUALS = "Compare High to Low item list with initial item list and check that they are equal";
     public static final String COMPARE_HILO_LIST_TO_ZA_LIST_NOT_EQUALS = "Compare High to Low item list with Z to A item list and check that they are not equal";
     public static final String COMPARE_HILO_LIST_TO_LOHI_LIST_NOT_EQUALS = "Compare High to Low item list with Low to High item list and check that they are not equal";
-    public static final String COMPARE_AZ_LIST_TO_INITIAL_LIST_NOT_EQUALS = "Compare A to Z item list with initial item list and check that they are not equal";
     public static final String COMPARE_AZ_LIST_TO_INITIAL_LIST_EQUALS = "Compare A to Z item list with initial item list and check that they are equal";
-
     public static final String COMPARE_AZ_LIST_TO_ZA_LIST = "Compare A to Z item list with Z to A item list and check that they are not equal";
     public static final String COMPARE_AZ_LIST_TO_LOHI_LIST = "Compare A to Z item list with Low to High item list and check that they are not equal";
     public static final String COMPARE_AZ_LIST_TO_HILO_LIST = "Compare A to Z item list with High to Low item list and check that they are not equal";
