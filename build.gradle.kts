@@ -75,6 +75,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
+    testImplementation("com.github.automatedowl:allure-environment-writer:1.0.0")
     testImplementation("org.assertj:assertj-core:3.26.3")
     testImplementation("ch.qos.logback:logback-classic:1.5.6")
     testImplementation("ch.qos.logback:logback-core:1.5.6")
