@@ -41,5 +41,13 @@ Once you have run the tests you can generate the Allure report by running the fo
 ```
 $ allure generate build/allure-results --clean
 ```
-After the executed command, you will be able to see in the root of the project a folder called `allure-report`, within this directory
-you can find the generated HTML report
+After running the above command successfully you will be able to find the report in the following path: `your-project-path/allure-report`
+
+### Open the report
+Locally you can open the report in two ways:
+- Using the command:
+```
+$ allure open /your-project-path/allure-report
+```
+The command starts a local web server and show the report directory's contents. Opens the report in your default browser.
+- Opening the report file `/your-project-path/allure-report/index.html` in the browser of your choice. This shows the static contents of the report directory without starting any local web server.
