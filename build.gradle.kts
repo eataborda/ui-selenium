@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val allureVersion = "2.25.0"
+val allureVersion = "2.29.0"
 val aspectJVersion = "1.9.22.1"
 
 val agent: Configuration by configurations.creating {
@@ -71,13 +71,13 @@ tasks.withType<Test> {
 
 dependencies {
     agent("org.aspectj:aspectjweaver:${aspectJVersion}")
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.24.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.26.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.3")
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
     testImplementation("org.assertj:assertj-core:3.26.3")
-    testImplementation("ch.qos.logback:logback-classic:1.5.6")
-    testImplementation("ch.qos.logback:logback-core:1.5.6")
+    testImplementation("ch.qos.logback:logback-classic:1.5.12")
+    testImplementation("ch.qos.logback:logback-core:1.5.12")
     testImplementation("org.slf4j:slf4j-simple:2.0.16")
-    testImplementation("commons-io:commons-io:2.16.1")
+    testImplementation("commons-io:commons-io:2.18.0")
 }
