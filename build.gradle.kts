@@ -16,7 +16,7 @@ repositories {
 }
 
 val allureVersion = "2.29.1"
-val aspectJVersion = "1.9.22.1"
+val aspectJVersion = "1.9.24"
 
 val agent: Configuration by configurations.creating {
     isCanBeConsumed = true
@@ -72,13 +72,13 @@ tasks.withType<Test> {
 
 dependencies {
     agent("org.aspectj:aspectjweaver:${aspectJVersion}")
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.28.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.33.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.13.0")
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
     testImplementation("org.assertj:assertj-core:3.27.3")
     testImplementation("ch.qos.logback:logback-classic:1.5.16")
-    testImplementation("ch.qos.logback:logback-core:1.5.16")
-    testImplementation("org.slf4j:slf4j-simple:2.0.16")
-    testImplementation("commons-io:commons-io:2.18.0")
+    testImplementation("ch.qos.logback:logback-core:1.5.18")
+    testImplementation("org.slf4j:slf4j-simple:2.0.17")
+    testImplementation("commons-io:commons-io:2.19.0")
 }
