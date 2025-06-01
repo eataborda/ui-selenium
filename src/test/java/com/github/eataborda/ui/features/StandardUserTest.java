@@ -154,7 +154,7 @@ public class StandardUserTest {
         checkOutStepOneSteps.continueShopping();
         AssertSteps.softAssertIsEqualTo(checkOutStepOneSteps.getFieldErrorMessage(), ErrorMessage.SECOND_NAME_REQUIRED.getMessage(), AssertDescription.COMPARE_LAST_NAME_ERROR_MESSAGE, softAssertions);
 
-        // put only LastName (verify firstName) uppp
+        // put only LastName (verify firstName) uu
         checkOutStepOneSteps.putLastName(Client.EXAMPLE_CLIENT.getLastName());
         checkOutStepOneSteps.continueShopping();
         AssertSteps.softAssertIsEqualTo(checkOutStepOneSteps.getFieldErrorMessage(), ErrorMessage.POSTAL_CODE_REQUIRED.getMessage(), AssertDescription.COMPARE_POSTAL_CODE_ERROR_MESSAGE, softAssertions);
