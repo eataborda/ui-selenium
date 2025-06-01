@@ -32,7 +32,7 @@ jobs:
         id: create_temporary_datadir
         run: echo "user_data_dir=$(mktemp -d)" >> $GITHUB_OUTPUT
       - name: Gradle run
-        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;--incognito;--user-data-dir=${{ steps.create_temporary_datadir.outputs.user_data_dir }};"
+        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--incognito;--headless=new;--window-size=1920,1080;--user-data-dir=${{ steps.create_temporary_datadir.outputs.user_data_dir }};"
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
