@@ -16,9 +16,17 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           architecture: x64
-      - uses: browser-actions/setup-chrome@latest
+      - name: Get preinstalled chrome version
+        id: get_chrome_version
+        run: |
+          CHROME_VERSION_FULL=$(google-chrome --version | awk '{print $3}')
+          echo "Complete Chrome preinstalled version: $CHROME_VERSION_FULL"
+          echo "chrome_version=$CHROME_VERSION_FULL" >> $GITHUB_OUTPUT
+      - name: Configure corresponding Chrome and ChromeDriver version
+        id: setup_chrome_driver
+        uses: browser-actions/setup-chrome@latest
         with:
-          chrome-version: stable
+          chrome-version: ${{ steps.get_chrome_version.outputs.chrome_version }}
           install-chromedriver: true
       - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;"
