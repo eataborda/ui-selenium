@@ -27,12 +27,6 @@ public class WebDriverConfig {
                 if (!Objects.equals(arguments, "")) {
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments(arguments);
-                    Map<String, Object> prefs = new HashMap<>();
-                    prefs.put("safebrowsing.enabled", false);
-                    prefs.put("credentials_enable_service", false);
-                    prefs.put("profile.password_manager_enabled", false);
-                    prefs.put("profile.password_manager_leak_detection.enabled", false); // Disables breach warning
-                    options.setExperimentalOption("prefs", prefs);
                     driver = new ChromeDriver(options);
                 } else {
                     driver = new ChromeDriver();
