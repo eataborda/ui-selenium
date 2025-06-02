@@ -16,19 +16,20 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           architecture: x64
-      - name: Get preinstalled firefox version
-        id: get_firefox_version
+      - name: Get preinstalled chrome version
+        id: get_chrome_version
         run: |
-          FIREFOX_VERSION_FULL=$(firefox --version | awk '{print $3}')
-          echo "Complete Firefox preinstalled version: $FIREFOX_VERSION_FULL"
-          echo "firefox_version=$FIREFOX_VERSION_FULL" >> $GITHUB_OUTPUT
-      - name: Configure Firefox and Firefox driver version
-        id: setup_firefox_driver
-        uses: browser-actions/setup-firefox@latest
+          CHROME_VERSION_FULL=$(google-chrome --version | awk '{print $3}')
+          echo "Complete Chrome preinstalled version: $CHROME_VERSION_FULL"
+          echo "chrome_version=$CHROME_VERSION_FULL" >> $GITHUB_OUTPUT
+      - name: Configure corresponding Chrome and ChromeDriver version
+        id: setup_chrome_driver
+        uses: browser-actions/setup-chrome@latest
         with:
-          firefox-version: ${{ steps.get_firefox_version.outputs.firefox_version }}
+          chrome-version: ${{ steps.get_chrome_version.outputs.chrome_version }}
+          install-chromedriver: true
       - name: Gradle run
-        run: ./gradlew -DincludeTags="regression" -Ddriver="firefox" -DdriverArguments="-headless"
+        run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;--guest;--no-sandbox;--disable-gpu;"
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
