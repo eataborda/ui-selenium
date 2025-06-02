@@ -28,7 +28,7 @@ jobs:
         with:
           firefox-version: ${{ steps.get_firefox_version.outputs.firefox_version }}
       - name: Gradle run
-        run: ./gradlew -DincludeTags="regression" -Ddriver="firefox" -DdriverArguments="--headless=new;--window-size=1920,1080;"
+        run: ./gradlew -DincludeTags="regression" -Ddriver="firefox" -DdriverArguments="-headless"
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
