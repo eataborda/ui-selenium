@@ -24,14 +24,14 @@ jobs:
           echo "chrome_version=$CHROME_VERSION_FULL" >> $GITHUB_OUTPUT
       - name: Configure corresponding Chrome and ChromeDriver version
         id: setup_chrome_driver
-        uses: browser-actions/setup-chrome@latest
+        uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: ${{ steps.get_chrome_version.outputs.chrome_version }}
           install-chromedriver: true
       - name: Gradle run
         run: ./gradlew -DincludeTags="regression" -Ddriver="chrome" -DdriverArguments="--headless=new;--window-size=1920,1080;--disable-web-security;--no-proxy-server;"
       - name: Load test report history
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         if: always()
         continue-on-error: true
         with:
